@@ -102,7 +102,7 @@ describe('Checkboxes on landing page', () => {
 })
 
 function menuLink(buttonLabel){
-	return cy.get(`#main-menu__button--${buttonLabel}`).filter(":visible")
+	return cy.get('pfe-navigation').shadow().find(`button#main-menu__button--${buttonLabel}`).filter(":visible")
 }
 
 describe('Nav menu is present and has the desired headings', () => {
@@ -110,7 +110,6 @@ describe('Nav menu is present and has the desired headings', () => {
         navigateToLanding()
         cy.wait(1000);
         cy.get('pfe-navigation').shadow().find("button#mobile__button").click();
-	// TODO: Figure out how to locate these in the shadow DOM
         menuLink("Products").should("be.visible")
         menuLink("Technologies").should("be.visible")
         menuLink("Learn").should("be.visible")
