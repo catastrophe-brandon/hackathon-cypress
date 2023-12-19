@@ -34,21 +34,20 @@ function navigateToLanding() {
 }
 
 function docsPageShown(docsPageTitle) {
-
+	cy.get("h1").contains(docsPageTitle)
 }
 
 function toggleSelection(checkBoxName) {
 	cy.get(".pf-c-check").contains(checkBoxName).click()
 }
 
-describe('Visit the API docs page log in', () => {
+describe('Landing page', () => {
 
   it('Visit API catalog page', () => {
     cy.visit(landingPage)
     cy.contains("Close").click()
     // force: true is required because for some reason the parent element has "hidden" in its CSS
     visitCard("Advisor")
-    // TODO: Confirm the Advisor docs are shown
     docsPageShown("Advisor")
   })
 
@@ -63,7 +62,7 @@ describe('Filtering on landing page', () => {
                 clearSearch()		
 		searchFor('Advisor')
 		// TODO: Confirm results only contained matches for Advisor
-		docsPageShown('Advisor')
+		cardVisible("Advisor")
         })
 
 	it('Restores results when I clear the filter', () => {
@@ -77,7 +76,6 @@ describe('Filtering on landing page', () => {
 		cardVisible("Automation Hub")
 		cardVisible("Compliance")
 		cardVisible("Cost Management")
-
 	})
 
 })
