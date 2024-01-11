@@ -106,7 +106,6 @@ function menuLink(buttonLabel){
 describe('Nav menu is present and has the desired headings', () => {
 	it('shows the expected headings on the nav menu', () => {
         navigateToLanding()
-        cy.wait(1000);
         cy.get('pfe-navigation').shadow().find("button#mobile__button").click();
         menuLink("Products").should("be.visible")
         menuLink("Technologies").should("be.visible")
